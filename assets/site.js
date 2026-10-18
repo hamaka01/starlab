@@ -65,7 +65,9 @@
   }
 
   /* ---------- youtube (click to play; opens YouTube when served from file://) ---------- */
-  document.querySelectorAll('.video[data-yt]').forEach(v => {
+  function ytLite(root) {
+  (root || document).querySelectorAll('.video[data-yt]').forEach(v => {
+    if (v.dataset.ytReady) return; v.dataset.ytReady = '1';
     const id = v.dataset.yt, title = v.dataset.title || '';
     v.innerHTML = `<img src="https://i.ytimg.com/vi/${id}/hqdefault.jpg" alt="" loading="lazy"><button type="button" class="play" aria-label="play ${esc(title)}"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>`;
     v.addEventListener('click', () => {
@@ -73,6 +75,7 @@
       v.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0" title="${esc(title)}" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>`;
     });
   });
+  }
 
   /* ---------- home ---------- */
   function renderHome() {
@@ -82,6 +85,20 @@
     const nl = document.getElementById('home-news'); if (nl) nl.innerHTML = D.news.slice(0, 4).map(newsItem).join('');
     const pl = document.getElementById('home-pubs'); if (pl) pl.innerHTML = D.publications.slice(0, 4).map(pubItem).join('');
     const rg = document.getElementById('home-research'); if (rg) rg.innerHTML = researchCards();
+    renderMedia();
+  }
+
+  /* ---------- media (home) ---------- */
+  function renderMedia() {
+    const el = document.getElementById('media'); if (!el) return;
+    const vs = D.videos || [];
+    if (!vs.length) { el.closest('section').style.display = 'none'; return; }
+    el.className = 'grid ' + (vs.length === 1 ? 'c2' : vs.length === 2 ? 'c2' : 'c3');
+    el.innerHTML = vs.map(v => {
+      const ttl = lang() && v.title_en ? v.title_en : v.title;
+      return `<div><div class="video" data-yt="${esc(v.yt)}" data-title="${esc(ttl)}"></div><p class="small muted" style="margin-top:8px">${esc(ttl)}</p></div>`;
+    }).join('');
+    ytLite(el);
   }
 
   /* ---------- research ---------- */
@@ -363,5 +380,5 @@
     renderHome(); renderResearch(); renderNews(); renderPubs(); renderProjects(); renderMembers(); renderAlumni(); renderGallery(); renderCV(); renderTimeline();
   }
   initLang();
-  document.addEventListener('DOMContentLoaded', () => { render(); hero(); });
+  document.addEventListener('DOMContentLoaded', () => { render(); hero(); ytLite(); });
 })();
