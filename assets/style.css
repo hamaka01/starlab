@@ -469,3 +469,14 @@ details.prior>p{margin:8px 0 6px 32px}
   h1{font-size:30px}
   .page-head .sub{font-size:11.5px}
 }
+
+/* About 소개 — 원형 인물 사진 + 2단 본문 */
+.about-lead{display:grid;grid-template-columns:216px minmax(0,1fr);gap:40px;align-items:start;margin-top:48px}
+.about-lead .grid.c2{gap:28px}
+.lead-photo{margin:0;width:216px}
+.lead-photo img{display:block;width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;border-radius:50%;border:1px solid var(--line);background:var(--paper-2)}
+@media (max-width:980px){
+  .about-lead{grid-template-columns:1fr;gap:28px;justify-items:center}
+  .about-lead .grid.c2{width:100%}
+  .lead-photo{width:168px}
+}
