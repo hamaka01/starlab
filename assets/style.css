@@ -480,3 +480,10 @@ details.prior>p{margin:8px 0 6px 32px}
   .about-lead .grid.c2{width:100%}
   .lead-photo{width:168px}
 }
+
+/* 교수 소개 — 액션 줄 (전체 이력 / 외부 프로필 링크) */
+.pi-actions{display:flex;flex-wrap:wrap;align-items:center;gap:8px;line-height:1;margin-top:22px}
+.pi-actions>*{display:inline-flex;align-items:center;height:32px;flex:0 0 auto;box-sizing:border-box;margin:0;padding:0 13px;font-size:12.5px;font-weight:600;line-height:1;letter-spacing:.04em}
+a.plink{gap:7px;text-decoration:none}
+a.plink svg{width:15px;height:15px;flex:none;fill:currentColor;opacity:.72}
+a.plink:hover svg{opacity:1}
