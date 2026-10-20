@@ -482,8 +482,21 @@ details.prior>p{margin:8px 0 6px 32px}
 }
 
 /* 교수 소개 — 액션 줄 (전체 이력 / 외부 프로필 링크) */
-.pi-actions{display:flex;flex-wrap:wrap;align-items:center;gap:8px;line-height:1;margin-top:22px}
-.pi-actions>*{display:inline-flex;align-items:center;height:32px;flex:0 0 auto;box-sizing:border-box;margin:0;padding:0 13px;font-size:12.5px;font-weight:600;line-height:1;letter-spacing:.04em}
-a.plink{gap:7px;text-decoration:none}
-a.plink svg{width:15px;height:15px;flex:none;fill:currentColor;opacity:.72}
-a.plink:hover svg{opacity:1}
+.pi-actions{display:flex;flex-wrap:wrap;align-items:center;gap:10px;line-height:1;margin-top:24px}
+.pi-actions>*{display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;margin:0}
+
+/* 1차 — 전체 이력 보기 */
+.pi-actions .cv-toggle{height:40px;padding:0 22px;font-size:13.5px;font-weight:700;letter-spacing:.02em;
+  border:1.5px solid var(--navy);color:var(--navy);border-radius:5px}
+.pi-actions .cv-toggle:hover{background:var(--navy);color:#fff}
+.pi-actions .cv-toggle.open{background:var(--navy);color:#fff;border-color:var(--navy)}
+
+/* 2차 — 외부 프로필 (두 개를 같은 크기로) */
+.pi-actions a.plink{height:34px;min-width:156px;padding:0 14px;gap:8px;font-size:12.5px;font-weight:600;
+  letter-spacing:.02em;color:var(--muted);border:1px solid var(--line);border-radius:5px;
+  background:var(--white);text-decoration:none;transition:border-color .15s,color .15s}
+.pi-actions a.plink:hover{border-color:var(--line-2);color:var(--text)}
+.pi-actions a.plink svg{width:17px;height:17px;flex:none}
+.pi-actions a.plink.scholar svg{fill:#4285F4}
+.pi-actions a.plink.orcid svg{fill:#A6CE39}
+@media (max-width:460px){.pi-actions a.plink{min-width:0;flex:1 1 auto}}
