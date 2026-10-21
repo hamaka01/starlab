@@ -172,6 +172,8 @@ input[type=search]:focus{border-color:var(--navy);outline:none;box-shadow:0 0 0 
 .pub .t .ix{display:inline-block;vertical-align:2px;margin-left:8px;font-size:10px;font-weight:700;letter-spacing:.06em;line-height:16px;padding:0 6px;border-radius:2px;white-space:nowrap}
 .pub .t .ix.kci{color:#3B5B9A;background:#E9EEF7;border:1px solid #C9D4EA}
 .pub .t .ix.sci{color:#8A5F10;background:var(--amber-soft);border:1px solid #EBD9AE}
+.pub .t .ix.scp{color:#6B4A8C;background:#F2EAF8;border:1px solid #DCCBE9}
+.pub .t .ix+.ix{margin-left:4px}
 .pub .act .accepted{font-size:12px;font-weight:700;letter-spacing:.04em;color:#2E6B4F;background:#E8F3EC;border:1px solid #BFDCCB;border-radius:3px;padding:5px 10px;white-space:nowrap}
 @media (max-width:640px){.pub{grid-template-columns:1fr}.pub .act{grid-column:1;grid-row:auto;flex-direction:row;align-items:center}}
 
