@@ -243,6 +243,7 @@
   };
   const affilTxt = x => (lang() && AFFIL_EN[x.affil]) ? AFFIL_EN[x.affil] : (x.affil || '');
   const TOPIC_EN = {
+    '부동산시장분석': 'Real estate market analysis',
     '지속가능개발&하우징': 'Sustainable Housing & Development',
     '보행중심계획': 'Pedestrian-Centric Planning',
     '도시보건정책': 'Urban Health Policy',
