@@ -243,6 +243,11 @@
   };
   const affilTxt = x => (lang() && AFFIL_EN[x.affil]) ? AFFIL_EN[x.affil] : (x.affil || '');
   const TOPIC_EN = {
+    '지속가능개발&하우징': 'Sustainable Housing & Development',
+    '보행중심계획': 'Pedestrian-Centric Planning',
+    '도시보건정책': 'Urban Health Policy',
+    '통계조사방법론': 'Quantitative Research',
+    'GIS&네트워크분석': 'GIS & Network Analysis',
     '도시 및 국토계획': 'Urban and regional planning', '도시재난': 'Urban disasters',
     '도시데이터사이언스': 'Urban data science', '도시데이터과학': 'Urban data science',
     '도시행정': 'Urban administration', '도시계획': 'Urban planning', '머신러닝': 'Machine learning',
