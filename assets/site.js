@@ -160,7 +160,7 @@
   /* ---------- publications ---------- */
   function pubItem(p) {
     const acc = String(p.vol || '').toLowerCase() === 'accepted';
-    const idx = p.index ? `<span class="ix ${p.index === 'KCI' ? 'kci' : 'sci'}">${esc(p.index)}</span>` : '';
+    const idx = p.index ? `<span class="ix ${/KCI/.test(p.index) ? 'kci' : 'sci'}">${esc(p.index)}</span>` : '';
     const acts = acc ? `<span class="accepted">${t(I18N.pub.accepted)}</span>` : `${p.url ? `<a href="${esc(p.url)}" target="_blank" rel="noopener">${t(I18N.pub.link)}</a>` : ''}${p.abstract ? `<button type="button" data-abs>${t(I18N.pub.abs)}</button>` : ''}`;
     return `<div class="pub" data-id="${p.id}">
       <div><div class="t">${esc(p.title)}${idx}</div><div class="a">${esc(p.author)}</div><div class="j"><i>${esc(p.journal)}</i>${p.vol && !acc ? ', ' + esc(p.vol) : ''} · ${esc(p.date)}</div></div>
