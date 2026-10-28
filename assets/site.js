@@ -8,7 +8,7 @@
     pub: { all: ['전체', 'All'], search: ['제목·저자·학술지 검색', 'Search title, author or journal'], abs: ['초록', 'Abstract'], link: ['원문', 'Full text'], cite: ['인용 복사', 'Cite'], copied: ['복사됨', 'Copied'], n: ['편', 'papers'], accepted: ['게재 확정', 'Accepted'] },
     proj: { all: ['전체', 'All'], pi: ['연구책임', 'Principal investigator'], co: ['공동연구', 'Co-investigator'], ongoing: ['진행 중', 'Ongoing'], on: ['진행중', 'Ongoing'], piTag: ['연구책임', 'PI'], coTag: ['공동연구', 'Co-I'] },
     news: { all: ['전체', 'All'], media: ['언론·칼럼', 'Media'], award: ['수상', 'Awards'], lab: ['연구실', 'Lab'], activity: ['학술활동', 'Activities'], read: ['기사 보기', 'Read article'], photo: ['사진', 'Photo'] },
-    mem: { PhD: ['박사과정', 'Ph.D. student'], MS: ['석사과정', 'M.S. student'], phdDeg: ['박사', 'Ph.D.'], msDeg: ['석사', 'M.S.'], name: ['이름', 'Name'], program: ['과정', 'Program'], major: ['전공', 'Major'], interests: ['연구 관심', 'Research interests'], affil: ['소속', 'Affiliation'], ft: ['전일제', 'Full-time'], pt: ['재직자', 'Working professionals'] },
+    mem: { PhD: ['박사과정', 'Ph.D. student'], MS: ['석사과정', 'M.S. student'], UG: ['학석사연계과정', 'BS–MS student'], phdDeg: ['박사', 'Ph.D.'], msDeg: ['석사', 'M.S.'], name: ['이름', 'Name'], program: ['과정', 'Program'], major: ['전공', 'Major'], interests: ['연구 관심', 'Research interests'], affil: ['소속', 'Affiliation'], ft: ['전일제', 'Full-time'], pt: ['재직자', 'Working professionals'] },
     prog: { grad: ['일반대학원', 'Graduate School'], urban: ['도시과학대학원', 'Graduate School of Urban Sciences'], intl: ['국제도시과학대학원', 'International School of Urban Sciences'] },
     more: ['전체 보기', 'View all'], lang: ['EN', '한국어']
   };
@@ -268,8 +268,9 @@
     return t.split(',').map(x => x.trim()).filter(Boolean).map(x => TOPIC_EN[x] || x).join(', '); };
   const MAJOR_EN = { '도시행정학과': 'Urban Administration', '부동산학과': 'Real Estate' };
   const majorTxt = m => (lang() && MAJOR_EN[m.major]) ? MAJOR_EN[m.major] : (m.major || '');
-  const progLabel = m => m.level === 'PhD' ? t(I18N.mem.PhD) : t(I18N.mem.MS);
-  const progEn = m => m.level === 'PhD' ? I18N.mem.PhD[1] : I18N.mem.MS[1];
+  const LV = m => I18N.mem[m.level] ? I18N.mem[m.level] : I18N.mem.MS;
+  const progLabel = m => t(LV(m));
+  const progEn = m => LV(m)[1];
   function table(rows, cols) {
     return `<table class="plist"><thead><tr>${cols.map(c => `<th>${c.h}</th>`).join('')}</tr></thead><tbody>${rows.map(m => `<tr>${cols.map(c => `<td class="${c.k}">${c.f(m)}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
   }
@@ -280,6 +281,7 @@
     topic: { h: 'Research interests', k: 't', f: m => esc(topicTxt(m)) },
     affil: { h: 'Affiliation', k: 't', f: m => esc(affilTxt(m)) }
   };
+  const LVO = m => ({ PhD: 0, MS: 1, UG: 2 })[m.level] ?? 1;
   function renderMembers() {
     const el = document.getElementById('member-groups'); if (!el) return;
     const g = D.members;
@@ -288,7 +290,7 @@
       { ko: '일반대학원 비전일제 연구원', en: 'Part-time Researchers · Graduate School', rows: g.filter(m => m.prog === 'grad' && m.fulltime === false), cols: [COL.name, COL.prog, COL.affil] },
       { ko: '도시과학대학원', en: 'Graduate School of Urban Sciences', rows: g.filter(m => m.prog === 'urban'), cols: [COL.name, COL.major, COL.affil] }
     ];
-    el.innerHTML = blocks.filter(b => b.rows.length).map(b => `<div class="cat"><h3>${lang() ? b.en : b.ko}</h3><span class="en">${lang() ? b.ko : b.en}</span><span class="count">${b.rows.length}</span></div>${table(b.rows.sort((a, c) => (a.level === c.level ? 0 : a.level === 'PhD' ? -1 : 1)), b.cols)}`).join('');
+    el.innerHTML = blocks.filter(b => b.rows.length).map(b => `<div class="cat"><h3>${lang() ? b.en : b.ko}</h3><span class="en">${lang() ? b.ko : b.en}</span><span class="count">${b.rows.length}</span></div>${table(b.rows.sort((a, c) => (LVO(a) - LVO(c))), b.cols)}`).join('');
   }
   function renderAlumni() {
     const el = document.getElementById('alumni-groups'); if (!el) return;
