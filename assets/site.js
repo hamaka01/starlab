@@ -209,6 +209,7 @@
   /* ---------- members / alumni ---------- */
   /* 영문 모드 표기: 공식 영문명이 확실한 기관만 치환하고, 나머지는 한글 그대로 둔다 */
   const AFFIL_EN = {
+    '경북연구원': 'Gyeongbuk Development Institute',
     '국토연구원': 'Korea Research Institute for Human Settlements (KRIHS)',
     '한국토지주택공사': 'Korea Land & Housing Corporation (LH)',
     '국토교통부': 'Ministry of Land, Infrastructure and Transport',
