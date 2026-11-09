@@ -425,7 +425,7 @@ details.prior>p{margin:8px 0 6px 32px}
   .hero .lede br,.statement br{display:none}
   .hero .stats{gap:18px 28px;margin-top:32px}
   .hero .stats .stat{min-width:64px}
-  .hero .caption{position:static;display:block;margin-top:18px;text-align:right}
+  .hero .caption{left:var(--gutter);right:var(--gutter);bottom:10px;text-align:right;font-size:10px;line-height:1.45}
   .section{padding:52px 0}
   .sec-head{margin-bottom:24px}
   .cat{margin:40px 0 14px;gap:10px;flex-wrap:wrap}
