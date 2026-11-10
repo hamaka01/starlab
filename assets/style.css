@@ -531,8 +531,10 @@ details.prior>p{margin:8px 0 6px 32px}
   .rcard .over p,.rcard p,.pub .abs,.ncard .b,.plist td.t,#join p,
   .site-footer .addr{word-break:keep-all;overflow-wrap:break-word}
 
-  /* 본문 단락은 왼쪽 정렬 — 좁은 화면에서 양쪽 정렬은 공백이 과도하게 벌어짐 */
-  .pi .bio,.grid.c2 p,.page-head p.intro,.pub .abs,.ncard .b,#join p{text-align:left}
+  /* 본문 단락 — 양쪽 정렬. 한글은 음절 단위 줄바꿈을 허용해야 공백이 벌어지지 않고,
+     영문 낱말은 overflow-wrap:break-word 로 꼭 필요할 때만 끊기도록 둔다. */
+  .pi .bio,.grid.c2 p,.page-head p.intro,.pub .abs,.ncard .b,#join p{
+    text-align:justify;word-break:normal;overflow-wrap:break-word}
 
   /* 푸터 — 연구실 영문명·주소가 화면 밖으로 잘려나가지 않도록 줄바꿈 허용 */
   .site-footer b{white-space:nowrap;font-size:clamp(12.5px,4vw,16px);line-height:1.4}
