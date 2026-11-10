@@ -531,10 +531,12 @@ details.prior>p{margin:8px 0 6px 32px}
   .rcard .over p,.rcard p,.pub .abs,.ncard .b,.plist td.t,#join p,
   .site-footer .addr{word-break:keep-all;overflow-wrap:break-word}
 
-  /* 본문 단락 — 양쪽 정렬. 한글은 음절 단위 줄바꿈을 허용해야 공백이 벌어지지 않고,
-     영문 낱말은 overflow-wrap:break-word 로 꼭 필요할 때만 끊기도록 둔다. */
+  /* 본문 단락 — 왼쪽 정렬.
+     실측(Pretendard, 360~412px): 양쪽 정렬은 낱말 유지 시 공백이 최대 106px까지 벌어지고,
+     음절 줄바꿈을 허용하면 360px에서 마지막 줄이 "다." 한 글자만 남는다.
+     왼쪽 정렬은 모든 폭에서 공백 3.6px(기본값) 유지 + 마지막 줄 정상. */
   .pi .bio,.grid.c2 p,.page-head p.intro,.pub .abs,.ncard .b,#join p{
-    text-align:justify;word-break:normal;overflow-wrap:break-word}
+    text-align:left;word-break:keep-all;overflow-wrap:break-word}
 
   /* 푸터 — 연구실 영문명·주소가 화면 밖으로 잘려나가지 않도록 줄바꿈 허용 */
   .site-footer b{white-space:nowrap;font-size:clamp(12.5px,4vw,16px);line-height:1.4}
