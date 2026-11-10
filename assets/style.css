@@ -506,4 +506,32 @@ details.prior>p{margin:8px 0 6px 32px}
 .pi-actions a.plink svg{width:17px;height:17px;flex:none}
 .pi-actions a.plink.scholar svg{fill:#4285F4}
 .pi-actions a.plink.orcid svg{fill:#A6CE39}
-@media (max-width:460px){.pi-actions a.plink{min-width:0;flex:1 1 auto}}
+/* ───── 모바일 전용 보정 (760px 이하에서만 적용 · PC 화면에는 영향 없음) ───── */
+@media (max-width:760px){
+  /* 프로필 버튼 3개를 한 줄로 — 외부 프로필은 아이콘 버튼으로 */
+  .pi-actions{flex-wrap:nowrap;gap:8px}
+  .pi-actions .cv-toggle{flex:1 1 auto;min-width:0;padding:0 14px;font-size:13px;white-space:nowrap}
+  .pi-actions a.plink{flex:0 1 auto;min-width:0;height:40px;padding:0 6px;gap:4px;font-size:11px;white-space:nowrap}
+  .pi-actions a.plink .plink-long{display:none}
+  .pi-actions a.plink svg{width:15px;height:15px}
+
+  /* 구성원 목록 — 소속이 없는 사람도 같은 줄 수를 차지하게 해 칸 높이를 맞춤 */
+  .plist td.t:empty::before{content:"\00a0"}
+
+  /* 논문 검색 — 검색창·연도·건수를 한 줄에 */
+  #pub-q{flex:1 1 100px;min-width:0;font-size:14px;padding:10px 12px}
+  #pub-filters select.sel{padding:10px 30px 10px 12px;font-size:13.5px;background-position:right 11px center}
+  #pub-count{flex:none;font-size:12.5px;white-space:nowrap}
+
+  /* 논문 색인 배지 — 제목 길이에 따라 들쭉날쭉하지 않도록 항상 다음 줄에 */
+  .pub .t .ixs{display:block;margin-top:7px}
+  .pub .t .ixs .ix{margin-left:0;vertical-align:baseline}
+  .pub .t .ixs .ix+.ix{margin-left:4px}
+}
+/* 아주 좁은 화면(360px 미만)에서는 외부 프로필을 아이콘만으로 */
+@media (max-width:359px){
+  .pi-actions .cv-toggle{font-size:12.5px;padding:0 12px}
+  .pi-actions a.plink{flex:0 0 40px;width:40px;padding:0;gap:0}
+  .pi-actions a.plink>span{display:none}
+  .pi-actions a.plink svg{width:19px;height:19px}
+}
