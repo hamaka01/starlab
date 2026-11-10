@@ -531,8 +531,11 @@ details.prior>p{margin:8px 0 6px 32px}
   .rcard .over p,.rcard p,.pub .abs,.ncard .b,.plist td.t,#join p,
   .site-footer .addr{word-break:keep-all;overflow-wrap:break-word}
 
+  /* 본문 단락은 PC와 같이 양쪽 정렬 */
+  .pi .bio,.grid.c2 p,.page-head p.intro,.pub .abs,.ncard .b,#join p{text-align:justify;hyphens:auto;-webkit-hyphens:auto}
+
   /* 푸터 — 연구실 영문명·주소가 화면 밖으로 잘려나가지 않도록 줄바꿈 허용 */
-  .site-footer b{white-space:normal;font-size:16px;line-height:1.4}
+  .site-footer b{white-space:nowrap;font-size:clamp(12.5px,4vw,16px);line-height:1.4}
   .site-footer .addr{white-space:normal}
 
   /* 논문 색인 배지 — 제목 길이에 따라 들쭉날쭉하지 않도록 항상 다음 줄에 */
